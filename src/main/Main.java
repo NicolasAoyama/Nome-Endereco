@@ -34,10 +34,6 @@ public class Main {
         limparTerminal();
         // Exibir lista
         exibirPessoas(pessoas);
-        // Pesquisar por nome
-        System.out.println("Digite o nome da pessoa para pesquisar:");
-        String nomePesquisado = sc.nextLine();
-        pesquisarPessoaPorNome(pessoas, nomePesquisado);
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +52,6 @@ public class Main {
         }
     }
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +75,6 @@ public class Main {
                 break;
             }
         }
-
         if (!encontrou) {
             System.out.println("Pessoa não encontrada.");
         }
@@ -116,7 +110,7 @@ public class Main {
         do {
             System.out.println("\n===== Menu =====");
             System.out.println("1. Cadastrar um pessoa");
-            System.out.println("2. Exibir pessoas");
+            System.out.println("2. Exibir informacoes");
             System.out.println("3. Procurar por nome");
             System.out.println("4. Finalizar");
             System.out.print("Escolha a opção desejada: ");
@@ -132,6 +126,10 @@ public class Main {
                     obj.exibirPessoas(obj.pessoas);
                     break;
                 case 3:
+                    scanner.nextLine();
+                    System.out.println("Digite o nome da pessoa para pesquisar:");
+                    String nomePesquisado = scanner.nextLine();
+                    obj.pesquisarPessoaPorNome(obj.pessoas, nomePesquisado);
                     break;
                 case 4:
                     System.out.println("Saindo do programa...");
