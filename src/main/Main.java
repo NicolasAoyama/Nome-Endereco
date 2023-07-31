@@ -50,7 +50,6 @@ public class Main {
                 System.out.println("Número: " + endereco.getNumero());
                 System.out.println();
             }
-            System.out.println("\n\n\n");
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
