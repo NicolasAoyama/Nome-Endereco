@@ -8,57 +8,59 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        List<Pessoa> pessoas = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
+    List<Pessoa> pessoas = new ArrayList<>();
+    Scanner sc = new Scanner(System.in);
 
-        for (int i = 0; i < 2; ++i) {
-            System.out.println("Digite o nome da pessoa:");
-            String nome = sc.nextLine();
-            System.out.println("Digite a idade da pessoa:");
-            int idade = sc.nextInt();
-            List<Endereco> enderecos = new ArrayList<>();
-            System.out.println("Quantos endereços essa pessoa tem?");
-            int qtdEndereco = sc.nextInt();
+
+
+    public void cadastrarPessoa(){
+        System.out.println("Digite o nome da pessoa:");
+        String nome = sc.nextLine();
+        System.out.println("Digite a idade da pessoa:");
+        int idade = sc.nextInt();
+        List<Endereco> enderecos = new ArrayList<>();
+        System.out.println("Quantos endereços essa pessoa tem?");
+        int qtdEndereco = sc.nextInt();
+        sc.nextLine();
+
+        for (int j = 1; j <= qtdEndereco; ++j) {
+            System.out.println("Digite o nome e o número do " + j + "º endereço dessa pessoa");
+            String enderecoNome = sc.nextLine();
+            int enderecoNumero = sc.nextInt();
             sc.nextLine();
-
-            for (int j = 1; j <= qtdEndereco; ++j) {
-                System.out.println("Digite o nome e o número do " + j + "º endereço dessa pessoa");
-                String enderecoNome = sc.nextLine();
-                int enderecoNumero = sc.nextInt();
-                sc.nextLine();
-                enderecos.add(new Endereco(enderecoNome, enderecoNumero));
-            }
-
-            pessoas.add(new Pessoa(nome, idade, enderecos));
+            enderecos.add(new Endereco(enderecoNome, enderecoNumero));
         }
-
+        pessoas.add(new Pessoa(nome, idade, enderecos));
         limparTerminal();
         // Exibir lista
         exibirPessoas(pessoas);
-
         // Pesquisar por nome
         System.out.println("Digite o nome da pessoa para pesquisar:");
         String nomePesquisado = sc.nextLine();
         pesquisarPessoaPorNome(pessoas, nomePesquisado);
     }
-
-    public static void exibirPessoas(List<Pessoa> pessoas) {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void exibirPessoas(List<Pessoa> pessoas) {
         for (Pessoa pessoa : pessoas) {
             System.out.println("Nome: " + pessoa.getNome());
             System.out.println("Idade: " + pessoa.getIdade());
             System.out.println("Endereços:");
 
             List<Endereco> enderecos = pessoa.getEnderecos();
-            for (Endereco endereco : enderecos) {
-                System.out.println("Rua: " + endereco.getRua());
-                System.out.println("Número: " + endereco.getNumero());
-                System.out.println();
-            }
+         for (Endereco endereco : enderecos) {
+            System.out.println("Rua: " + endereco.getRua());
+            System.out.println("Número: " + endereco.getNumero());
+            System.out.println();
         }
     }
+}
 
-    public static void pesquisarPessoaPorNome(List<Pessoa> pessoas, String nomePesquisado) {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void pesquisarPessoaPorNome(List<Pessoa> pessoas, String nomePesquisado) {
         boolean encontrou = false;
 
         for (Pessoa pessoa : pessoas) {
@@ -83,7 +85,9 @@ public class Main {
             System.out.println("Pessoa não encontrada.");
         }
     }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public static void limparTerminal() {
         try {
             String os = System.getProperty("os.name").toLowerCase();
@@ -96,10 +100,58 @@ public class Main {
 
                 processBuilder = new ProcessBuilder("sh", "-c", "clear");
             }
-
             processBuilder.inheritIO().start().waitFor();
         } catch (Exception e) {
 
         }
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public static void main(String[] args) {
+        Main obj = new Main();
+        Scanner scanner = new Scanner(System.in);
+        int opcao;
+        //Menu
+        do {
+            System.out.println("\n===== Menu =====");
+            System.out.println("1. Cadastrar um pessoa");
+            System.out.println("2. Exibir pessoas");
+            System.out.println("3. Procurar por nome");
+            System.out.println("4. Finalizar");
+            System.out.print("Escolha a opção desejada: ");
+
+
+            opcao = scanner.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    obj.cadastrarPessoa();
+                    break;
+                case 2:
+                    obj.exibirPessoas(obj.pessoas);
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    System.out.println("Saindo do programa...");
+                    break;
+                default:
+            }
+        }while (opcao!=4);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
